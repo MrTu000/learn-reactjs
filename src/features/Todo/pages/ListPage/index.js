@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import TodoList from "../../components/TodoList";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
+import TodoForm from "../../components/TodoForm";
 
-TodoLists.propTypes = {};
+ListPage.propTypes = {};
 
-function TodoLists(props) {
+function ListPage(props) {
     const todos = [
         {
             id: "1",
@@ -79,8 +80,20 @@ function TodoLists(props) {
         (todo) => filteredStatus === "all" || filteredStatus === todo.status
     );
 
+    const handelTodoFormSubmit = values => {
+        const newTodo = {
+            id: todoList.length + 1,
+            title: values.title,
+            status: 'new'
+        }
+
+        const newTodoList = [...todoList, newTodo]
+        setTodoList(newTodoList)
+    }
+
     return (
         <div>
+            <TodoForm onSubmit={handelTodoFormSubmit} />
             <h1>Todo List of Hoang Ka</h1>
             <TodoList TodoList={renderedTodoList} onTodoClick={handelClick} />
             <button onClick={handeShowAll}>show all</button>
@@ -90,4 +103,4 @@ function TodoLists(props) {
     );
 }
 
-export default TodoLists;
+export default ListPage;

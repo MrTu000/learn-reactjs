@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Routes, Route } from 'react-router-dom';
-import TodoLists from './pages/TodoList';
-import Detail from './pages/Detail';
+import ListPage from './pages/ListPage';
+import DetailPage from './pages/DetailPage';
 
 TodoFeature.propTypes = {
 
@@ -13,8 +13,8 @@ function TodoFeature(props) {
         <>
             <h1>tesst</h1>
             <Routes>
-                <Route path='/' element={<TodoLists />} />
-                <Route path={`/:todoId`} element={<Detail />} />
+                <Route path='/' element={<ListPage />} />
+                <Route path={`/:todoId`} element={<DetailPage />} />
             </Routes>
         </>
     );

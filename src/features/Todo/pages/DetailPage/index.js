@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-Detail.propTypes = {
+DetailPage.propTypes = {
 
 };
 
-function Detail(props) {
+function DetailPage(props) {
     return (
         <div>
             Detail page
@@ -13,4 +13,4 @@ function Detail(props) {
     );
 }
 
-export default Detail;
+export default DetailPage;
