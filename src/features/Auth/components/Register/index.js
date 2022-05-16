@@ -7,13 +7,13 @@ Register.propTypes = {
 };
 
 function Register(props) {
-    const handelSubmit = () => {
-
+    const handelSubmit = (values) => {
+        console.log("form submit:", values);
     }
 
     return (
         <div>
-            <RegisterForm />
+            <RegisterForm onSubmit={handelSubmit} />
         </div>
     );
 }

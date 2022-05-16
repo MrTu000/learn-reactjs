@@ -83,7 +83,6 @@ function Header(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Register</Button>
                 </DialogActions>
             </Dialog>
         </Box>

@@ -4,8 +4,9 @@ import InputField from '../../../../components/form-controls/InputField';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { Avatar, Typography } from '@mui/material';
+import { Avatar, Button, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import PasswordField from '../../../../components/form-controls/passwordField';
 
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func,
@@ -13,8 +14,10 @@ RegisterForm.propTypes = {
 
 function RegisterForm(props) {
     const schema = yup.object().shape({
-        title: yup.string().required('Moe ai day may de trong the kia')
-            .min(5, 'Title too short'),
+        fullName: yup.string().required("Full name can not empty")
+            .test('should has at least two words', 'Please enter at least two words', value => {
+                return value.split(' ').length >= 2
+            })
     })
 
     const form = useForm({
@@ -30,6 +33,8 @@ function RegisterForm(props) {
     const handelSubmit = values => {
         const { onSubmit } = props
         if (onSubmit) onSubmit(values)
+
+        form.reset()
     }
     return (
         <>
@@ -43,8 +48,9 @@ function RegisterForm(props) {
             <form onSubmit={form.handleSubmit(handelSubmit)}>
                 <InputField name="fullName" label="Full name" form={form} />
                 <InputField name="email" label="Email" form={form} />
-                <InputField name="password" label="Password" form={form} />
-                <InputField name="confirmPassword" label="Confirm password" form={form} />
+                <PasswordField name="password" label="Password" form={form} />
+                <PasswordField name="confirmPassword" label="Confirm password" form={form} />
+                <Button variant='contained' fullWidth sx={{ mt: 1 }} type="submit">Register</Button>
             </form>
         </>
     );
